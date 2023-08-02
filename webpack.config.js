@@ -19,8 +19,6 @@ const path = require('path');
           },
           {
             test: /\.(ts|tsx)$/,
-            exclude: /(node_modules)/,
-            sideEffects: false,
             use: [
               {
                 loader: 'babel-loader',
@@ -49,8 +47,9 @@ const path = require('path');
       },
       resolve: {
         alias: {
-          '@type': path.resolve(__dirname, './src/Type'),
-          '@': path.resolve(__dirname, 'src/')
+          '@': path.resolve(__dirname, 'src'),
+          '@components': path.resolve(__dirname, 'src/components'),
+          '@models': path.resolve(__dirname, 'src/models'),
         }
       },
   }

@@ -6,7 +6,9 @@ import {
     FieldPath,
     FieldValues,
     RegisterOptions,
+    useForm,
   } from 'react-hook-form';
+
   export type FieldType = 'input' | 'select' | 'datepicker' | 'datemask';
   interface Props extends UnionFieldProps {
     fieldType: FieldType;
@@ -21,42 +23,42 @@ import {
   }
   
 const Summary:FunctionComponent =()=>{
+    const { control, handleSubmit } = useForm({mode: 'onBlur',});
+    const reg= /^\S+@\S+$/i;
+    const onSubmit = (data:any) => {
+      console.log(data);
+    };
+    const rules = { required: 'Please enter a last name.', validate: {
+      valid: (value:any) => {
+        return (
+          reg.test(value) ||
+          'Please select a valid date - this must be DD/MM/YYYY.'
+        );
+      },
+    }, }
     return (
-        <div>
-            {/* <Controller name="test" rules={{
-                validate: {
-                  valid: (value) => {
-                    if (!value) {
-                      return true;
-                    }
-                    if (/^[0-9]{10}$/.test(value)) {
-                      let sum = 0;
-                      Array.from(value).forEach((item, index) => {
-                        if (index < value.length - 1) {
-                          sum += Number(value.charAt(index));
-                        }
-                      });
-                      // eslint-disable-next-line eqeqeq
-                      if (sum % 7 == value.substring(value.length - 1)) {
-                        return true;
-                      }
-                      return 'Please enter a valid Velocity Frequent Flyer number.';
-                    }
-                    return 'Please enter a valid 10-digit Velocity Frequent Flyer number.';
-                  },
-                },
-              }}
-              control={control}
-              render={({ field, fieldState }) => {
-                return (
-                  <div>
-                    输入名字：<input type="text" placeholder="Enter your Velocity number"/>
-                  </div>
-                );
-              }}
-              /> */}
-
-        </div>
-    )
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="email"
+          control={control}
+          defaultValue=""
+          rules={rules}
+          render={({ field, fieldState: { error } }) => {
+            console.log(error);
+            console.log(rules);
+            return (
+                <div>
+              <input {...field} placeholder="Email" />
+              <input type="number" name="travellers.0.firstName" placeholder="Enter your first name" pattern="[0-9]*" className="input input-bordered w-full"></input>
+              {error && <p>{error.message as string}</p>}
+            </div>
+            )
+            
+        }}
+        />
+  
+        <button type="submit">Submit</button>
+      </form>
+    );
 }
 export default Summary;
