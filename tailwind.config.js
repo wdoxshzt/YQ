@@ -9,5 +9,14 @@ purge: ['./src/**/*.tsx',"./src/components/**/*.tsx"],
     extend: {},
   },
   plugins: [],
+  safelist: [
+    'leading-[40px]',
+    'lg:grid-cols-2',
+    'lg:grid-rows-2',
+    'lg:grid-rows-3',
+    'lg:grid-rows-4',
+    'lg:grid-rows-5',
+    'lg:grid-rows-6',
+  ],
 }
 

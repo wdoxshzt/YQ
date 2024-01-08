@@ -1,23 +1,19 @@
 import { ReactElement, JSXElementConstructor } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FormProvider, useForm, useFormContext } from "react-hook-form";
 import InputField from './compoments/inputFied';
 
 function MyForm() {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
+  const methods = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data);
-    console.log(errors, "888");
   };
 
   return (
+    <FormProvider {...methods}>
     <form
-      onSubmit={handleSubmit(onSubmit, (error) => {
-        console.log(errors.isValid, "888888");
+      onSubmit={methods.handleSubmit(onSubmit, (error) => {
+        console.log(methods.formState.errors.isValid, "888888");
       })}
     >
       <Controller
@@ -32,7 +28,7 @@ function MyForm() {
             },
           },
         }}
-        control={control}
+        control={methods.control}
         render={({ field, fieldState }) => {
           return (
             <div className=" flex  flex-col  gap-4">
@@ -42,6 +38,7 @@ function MyForm() {
                 type="text"
                 placeholder="input your name"
                 onChange={field.onChange}
+                onBlur={(value)=>{console.log(value, '888888888')}}
               />
               <p>{fieldState.error?.message}</p>
             </div>
@@ -60,7 +57,7 @@ function MyForm() {
             },
           },
         }}
-        control={control}
+        control={methods.control}
         render={({ field, fieldState }) => {
           return (
             <div className=" flex  flex-col  gap-4">
@@ -79,7 +76,7 @@ function MyForm() {
       <Controller
         name='aaa'
         rules={{required: 'please select'}}
-        control={control}
+        control={methods.control}
         render={({ field, fieldState }) => {
           return (
             <InputField
@@ -92,6 +89,7 @@ function MyForm() {
       <div className="w-[300px] h-[600px] bg-purple-50"></div>
       <button type="submit">Submit</button>
     </form>
+    </FormProvider>
   );
 }
 

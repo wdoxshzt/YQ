@@ -3,6 +3,7 @@ import { FunctionComponent } from "react";
 import { forwardRef } from "react";
 import { useId, useRef } from "react";
 import FormError from "./formError";
+import { useFormContext } from "react-hook-form";
 
 export interface IFormFieldBaseProps {
   name?: string;
@@ -50,6 +51,8 @@ const InputField: FunctionComponent<InputFieldProps> = forwardRef<
     },
     ref
   ) => {
+    const text = useFormContext();
+console.log(text, '444444444444')
     const innerRef = useRef<HTMLInputElement | null>();
     const id = useId();
     const _onFocus = (event: any) => {

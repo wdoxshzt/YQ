@@ -1,0 +1,35 @@
+@media print {
+  .printStyle {
+    position: relative !important;
+    width: auto !important;
+
+    & div div {
+      position: relative !important;
+    }
+  }
+
+  @media (min-width: 991.98px) {
+    #mobileBar {
+      box-shadow: 0 16px 32px -4px rgb(145 158 171 / 24%),
+        0 1px 4px 0 rgb(145 158 171 / 25%);
+    }
+  }
+  @media screen and (orientation: portrait) {
+    #TripDetails {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  @media screen and (orientation: landscape) {
+    #TripDetails {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+
+  #TripDetails div {
+    border-radius: 60px;
+  }
+//   @page {
+//     size: landscape;
+//   }
+}

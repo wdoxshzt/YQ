@@ -8,6 +8,7 @@ import { MySwiper } from 'models/SwiperText';
 import './style.theme.scss';
 import { StickyTest } from 'models/StickyTest';
 import { DropDown } from 'models/Dropdown';
+import { TripDetails } from 'models/Print';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,13 +22,15 @@ const root = ReactDOM.createRoot(
 // };
 root.render(
   <React.StrictMode>
+        <MyForm />
     {/* <Person />
     <Summary /> */}
-    <Person />
-    <MyForm />
+    {/* <Person />
+
     <MyComponent />
     <MySwiper />
-    <StickyTest />
+    <StickyTest /> */}
     <DropDown />
+    <TripDetails />
   </React.StrictMode>
 );
