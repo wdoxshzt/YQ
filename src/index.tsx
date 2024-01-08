@@ -13,24 +13,15 @@ import { TripDetails } from 'models/Print';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-// const intoView = (value:any) => {
-//   const policy = document.getElementById('policySummary');
-//   if (value) {
-//     const top = policy!.offsetTop;
-//       window.scrollTo(0, top + 120);
-//   }
-// };
 root.render(
   <React.StrictMode>
-        <MyForm />
-    {/* <Person />
-    <Summary /> */}
-    {/* <Person />
-
+    {/* <MyForm />
+    <Person />
+    <Summary />
+    <Person />
     <MyComponent />
     <MySwiper />
-    <StickyTest /> */}
-    <DropDown />
+    <DropDown /> */}
     <TripDetails />
   </React.StrictMode>
 );

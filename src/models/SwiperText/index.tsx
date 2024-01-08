@@ -4,7 +4,6 @@ import { useSwiper } from 'swiper/react';
 import 'swiper/css';
 export const SlideNextButton= ()=> {
   const swiper = useSwiper();
-  console.log(swiper, '7777');
   return (
     <button onClick={() => swiper.slideNext()}>Slide to the next slide</button>
   );

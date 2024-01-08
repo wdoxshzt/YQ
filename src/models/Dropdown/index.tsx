@@ -8,7 +8,7 @@ import {
 } from "react";
 import { usePopper } from "react-popper";
 
-export const DropDown: FunctionComponent = () => {
+export const DropDown: FunctionComponent<{}> = () => {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLDivElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
